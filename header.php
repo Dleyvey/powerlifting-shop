@@ -29,5 +29,16 @@
     </div>
   </div>
 </nav>
+<?php session_start(); ?>
+
+<div class="bg-light py-2 text-end pe-4">
+  <?php if (isset($_SESSION['usuario'])): ?>
+    Bienvenido, <strong><?php echo $_SESSION['usuario']; ?></strong> |
+    <a href="logout.php" class="btn btn-sm btn-outline-danger">Cerrar sesión</a>
+  <?php else: ?>
+    <a href="login.php" class="btn btn-sm btn-outline-primary">Iniciar sesión</a>
+    <a href="registro.php" class="btn btn-sm btn-outline-success">Registrarse</a>
+  <?php endif; ?>
+</div>
 
 <main class="container mt-4">
