@@ -20,7 +20,15 @@ if ($resultado->num_rows > 0) {
                     <p><strong>Precio:</strong> $<?php echo $fila['precio']; ?></p>
                     <p><strong>Stock:</strong> <?php echo $fila['stock']; ?> unidades</p>
                     <p class="text-muted">Categoría: <?php echo $fila['categoria']; ?></p>
-                    <a href="#" class="btn btn-warning mt-auto">Agregar al carrito</a>
+                    <form action="agregar_carrito.php" method="POST" class="mt-auto">
+                        <input type="hidden" name="id_producto" value="<?php echo $fila['id_producto']; ?>">
+                        <input type="hidden" name="nombre" value="<?php echo $fila['nombre']; ?>">
+                        <input type="hidden" name="precio" value="<?php echo $fila['precio']; ?>">
+                        <input type="hidden" name="imagen_url" value="<?php echo $fila['imagen_url']; ?>">
+                        <input type="number" name="cantidad" value="1" min="1" max="<?php echo $fila['stock']; ?>" class="form-control mb-2">
+                        <button type="submit" class="btn btn-warning w-100">Agregar al carrito</button>
+                    </form>
+
                 </div>
             </div>
         </div>

@@ -23,8 +23,6 @@ Proyecto web para la materia de **Programación Web**, que cumple con la **Prác
 ```bash
 php -S localhost:8000
 
-En tu navegador visita:
-👉 http://localhost:8000
 
 Accede a las funcionalidades:
 
