@@ -36,22 +36,24 @@ if (isset($_GET['finalizado'])) {
                     <?php
                         $subtotal = $item['precio'] * $item['cantidad'];
                         $total += $subtotal;
-                        $imagenRuta = (strpos($item['imagen'], 'http') === 0) ? $item['imagen'] : '../assets/img/' . $item['imagen'];
+                        $imagenRuta = (strpos($item['imagen'], 'http') === 0)
+                            ? $item['imagen']
+                            : '../assets/img/' . $item['imagen'];
                     ?>
                     <tr>
-                        <td><?php echo $item['nombre']; ?></td>
-                        <td><img src="<?php echo $imagenRuta; ?>" width="80"></td>
+                        <td><?php echo htmlspecialchars($item['nombre']); ?></td>
+                        <td><img src="<?php echo $imagenRuta; ?>" width="80" style="object-fit:cover; border-radius: 0.5rem;"></td>
                         <td>$<?php echo number_format($item['precio'], 2); ?></td>
                         <td>
-                            <form action="../carrito/modificar_carrito.php" method="POST" class="d-flex justify-content-center">
+                            <form action="../carrito/modificar_carrtio.php" method="POST" class="d-flex justify-content-center align-items-center">
                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
-                                <input type="number" name="cantidad" value="<?php echo $item['cantidad']; ?>" min="1" class="form-control w-50">
+                                <input type="number" name="cantidad" value="<?php echo $item['cantidad']; ?>" min="1" class="form-control w-50" required>
                                 <button type="submit" class="btn btn-sm btn-primary ms-2">Actualizar</button>
                             </form>
                         </td>
                         <td>$<?php echo number_format($subtotal, 2); ?></td>
                         <td>
-                            <a href="../carrito/eliminar_carrito.php?id=<?php echo $id; ?>" class="btn btn-sm btn-danger">Eliminar</a>
+                            <a href="../carrito/eliminar_carrito.php?id=<?php echo $id; ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar este producto del carrito?')">Eliminar</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
